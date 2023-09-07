@@ -1,0 +1,14 @@
+.home_page{
+    width: 90%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin: 0 auto;
+}
+.home_page .settings img{
+    width: 50%;
+}
+.home_page .register{
+    gap: 12px;
+}
+.home_page input , .home_page select{
+    background-color: transparent;
+}

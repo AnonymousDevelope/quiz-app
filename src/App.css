@@ -1,0 +1,47 @@
+/* add font family poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+/* add bootstrap from cdn */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css");
+/* add normalize css */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
+#root {
+  margin: 0 auto;
+  padding: 1rem;
+  width: 100%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  /* space between character*/
+  letter-spacing: 3px;
+}
+
+:root {
+  --gradient: linear-gradient(to right, #00aaff, #00ff6c, #00ccff, #00aaff);
+  --gradient-circle: linear-gradient(
+    -45deg,
+    #ff00ff 0% 10%,
+    #00ff6c 70% 90%,
+    transparent 100%
+  );
+  --gradient-3d: radial-gradient(
+    circle at 65% 15%,
+    white 1px,
+    aqua 3%,
+    #ff00ff 60%,
+    aqua 100%
+  );
+}
+.title{
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center; 
+}
+.bgBody{
+  background: var(--gradient);
+}
+.shadow{
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}

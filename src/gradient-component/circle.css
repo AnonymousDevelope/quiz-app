@@ -1,0 +1,46 @@
+.circle{
+    background: var(--gradient-3d);
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border-width: 0;
+    position: absolute;
+    transition: all 0.5s ease;
+    box-shadow: 0 20px 10px rgba(0, 0, 0, 0.24); 
+    animation: circle_rotate 10s linear alternate infinite;
+    z-index: -9;   
+}
+body{
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+body::-webkit-scrollbar{
+    background-image: var(--gradient-3d);
+    width: 0;
+}
+.circle:nth-child(odd){
+    background: var(--gradient-3d);
+    height: 200px;
+    width: 200px;
+    float: right;
+    animation: circle_translate 5s  linear alternate infinite;
+}
+
+@keyframes circle_rotate {
+    0%{
+        transform: rotate(0deg) translate(0);
+    }
+    100%{
+        transform: rotate(360deg) translate(100%,100%);
+    }
+}
+
+@keyframes circle_translate {
+    0%{
+        transform: translate(0);
+    }
+    100%{
+        transform:translate(100%,100%);
+    }
+}
