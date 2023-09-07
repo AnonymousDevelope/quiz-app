@@ -27,14 +27,15 @@ const Home = () => {
         try {
             await fetchQuestions(formData, setQuestions, setLoading);
             setName(formData.name);
+            if(questions.length === 0){
+                setError(true);
+            }else{
+                setError(false);
+            }            
         } catch (error) {
             console.error('Error fetching questions:', error);
         }
-       if(questions.length === 0){
-           setError(true);
-       }else{
-           setError(false);
-       }
+       
     };
    const validate = () => {
        if (!formData.name || !formData.category || formData.difficulty === '0') {
