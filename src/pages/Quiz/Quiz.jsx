@@ -4,7 +4,6 @@ import { QuizContext } from '../../context';
 import './Quiz.css';
 import { useNavigate } from 'react-router';
 import Alert from '../../ui-components/Alert/Alert';
-
 const Quiz = () => {
   const { questions, loading, name, setQuestions, setScore } = useContext(QuizContext);
   const [count, setCount] = useState(0);
@@ -63,7 +62,11 @@ const Quiz = () => {
   };
 
   if (loading) {
-    return <h1>Loading . . .</h1>;
+    return (
+      <div className="loading">
+          
+      </div>
+    );
   }
 
   return (

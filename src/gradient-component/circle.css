@@ -1,7 +1,7 @@
 .circle{
     background: var(--gradient-3d);
-    width: 150px;
-    height: 150px;
+    width: 20%;
+    padding-bottom: 20%;
     border-radius: 50%;
     border-width: 0;
     position: absolute;
@@ -21,8 +21,8 @@ body::-webkit-scrollbar{
 }
 .circle:nth-child(odd){
     background: var(--gradient-3d);
-    height: 200px;
-    width: 200px;
+    width: 15%;
+    padding-bottom: 15%;
     float: right;
     animation: circle_translate 5s  linear alternate infinite;
 }
