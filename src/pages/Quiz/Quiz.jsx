@@ -1,9 +1,9 @@
-'use strict';
 import React, { useContext, useState, useEffect } from 'react';
 import { QuizContext } from '../../context';
 import './Quiz.css';
 import { useNavigate } from 'react-router';
-import Alert from '../../ui-components/Alert/Alert';
+import Alert from '../../ui-components/Alert/Alert'; // Import react-html-parser
+import parse from 'html-react-parser'
 const Quiz = () => {
   const { questions, loading, name, setQuestions, setScore } = useContext(QuizContext);
   const [count, setCount] = useState(0);
@@ -12,11 +12,12 @@ const Quiz = () => {
   const [error, setError] = useState(false);
   const [score, setScoreQuiz] = useState(0); // Use state to manage the score
   const navigate = useNavigate();
+
   useEffect(() => {
     if (!loading && answers.length === 0 && questions.length > 0) {
       const currentQuestion = questions[count];
       const allAnswers = [currentQuestion.correct_answer, ...currentQuestion.incorrect_answers];
-     allAnswers.sort(() => Math.random() - 0.5); 
+      allAnswers.sort(() => Math.random() - 0.5);
       setAnswers(allAnswers);
     }
   }, [loading, answers, count, questions]);
@@ -84,7 +85,9 @@ const Quiz = () => {
               </div>
             </div>
             <div className="col-md-12">
-              <div className="quiz_questions shadow">{questions[count]?.question}</div>
+              <div className="quiz_questions shadow">
+                {parse(questions[count]?.question)} {/* Parse HTML content */}
+              </div>
             </div>
             <div className="col-md-12">
               <div className="row m-0 quiz_answer justify-content-between gap-2">
@@ -95,7 +98,7 @@ const Quiz = () => {
                     className={`col-md-5 btn my-1 answer shadow ${select && handleSelect(answer)}`}
                     key={index}
                   >
-                    {answer}
+                    {parse(answer)}
                   </button>
                 ))}
               </div>
