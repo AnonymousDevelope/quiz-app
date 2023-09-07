@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { Header } from './components';
+import { Footer, Header } from './components';
 import Circle from './gradient-component/circle';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Home, Quiz, Result } from './pages';
@@ -25,6 +25,7 @@ function App() {
           <Route path="/quiz" element={<Quiz />} />
           <Route path="/result" element={<Result />} />
         </Routes>
+        <Footer />
       </>
     </QuizContextProvider>
   );
