@@ -26,12 +26,7 @@ const Home = () => {
         questions.length > 0 && navigate('/quiz') ;
         try {
             await fetchQuestions(formData, setQuestions, setLoading);
-            setName(formData.name);
-            if(questions.length === 0){
-                setError(true);
-            }else{
-                setError(false);
-            }            
+            setName(formData.name);          
         } catch (error) {
             console.error('Error fetching questions:', error);
         }
@@ -51,10 +46,7 @@ const Home = () => {
                 <div className='settings mb-3 text-center col-12 col-md-6'>
                     <img src={Quiz} alt='' />
                 </div>
-                <div className='register d-flex flex-column text-end col-12 col-md-6'> 
-                  {
-                    error && <Alert>hasn't questions try again</Alert>
-                  }                                    
+                <div className='register d-flex flex-column text-end col-12 col-md-6'>                                    
                     <div className='form-floating'>
                         <input
                             type='text'
