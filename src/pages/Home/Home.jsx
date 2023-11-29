@@ -4,17 +4,19 @@ import './Home.css';
 import Alert from '../../ui-components/Alert/Alert';
 import Categories from '../../data/category';
 import Quiz from '../../assets/svgs/quiz.svg';
-import { fetchQuestions } from '../../service/get'; // Assuming you import this correctly
-import { QuizContext } from '../../context'; // Update the import path accordingly
+import { fetchQuestions } from '../../service/get';
+import { QuizContext } from '../../context';
+
 const Home = () => {
-    const { setLoading,questions, setQuestions,setName } = useContext(QuizContext);
+    const { setLoading, questions, setQuestions, setName } = useContext(QuizContext);
     const [formData, setFormData] = useState({
         name: '',
         category: '',
         difficulty: '0', // Default level
     });
-     const [error, setError] = useState(false);  
+    const [error, setError] = useState(false);
     const navigate = useNavigate();
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -22,23 +24,34 @@ const Home = () => {
             [name]: value,
         });
     };
+
     const handleFetchQuestions = async () => {
-        questions.length > 0 && navigate('/quiz') ;
+        if (!validate()) {
+            setError(true);
+            return;
+        }
+
+        setError(false);
+
+        if (questions.length > 0) {
+            navigate('/quiz');
+            return;
+        }
+
         try {
             await fetchQuestions(formData, setQuestions, setLoading);
-            setName(formData.name);          
+            setName(formData.name);
+            navigate('/quiz');
         } catch (error) {
+            setError(true);
             console.error('Error fetching questions:', error);
         }
-       
     };
-   const validate = () => {
-       if (!formData.name || !formData.category || formData.difficulty === '0') {
-           return false;
-       }else{
-           return true;
-       }
-   } 
+
+    const validate = () => {
+        return !!formData.name && !!formData.category && formData.difficulty !== '0';
+    };
+
     return (
         <div className='home_page'>
             <div className='title'>Home Page</div>
@@ -46,7 +59,7 @@ const Home = () => {
                 <div className='settings mb-3 text-center col-12 col-md-6'>
                     <img src={Quiz} alt='' />
                 </div>
-                <div className='register d-flex flex-column text-end col-12 col-md-6'>                                    
+                <div className='register d-flex flex-column text-end col-12 col-md-6'>
                     <div className='form-floating'>
                         <input
                             type='text'
@@ -94,12 +107,13 @@ const Home = () => {
                     <button
                         className='btn btn-primary mt-3 w-100'
                         onClick={handleFetchQuestions}
-                        disabled={!validate}
+                        disabled={!validate()}
                     >
                         Continue
                     </button>
                 </div>
             </div>
+            {error && <Alert message="Error fetching questions. Please try again." />}
         </div>
     );
 };

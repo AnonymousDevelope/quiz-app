@@ -1,6 +1,5 @@
 import axios from "axios";
-import { useNavigate } from "react-router";
-
+// import { useNavigate } from "react-router";
 export const fetchQuestions = async (formData, setQuestions, setLoading) => {
   const { category, difficulty } = formData;
   try {
@@ -12,6 +11,7 @@ export const fetchQuestions = async (formData, setQuestions, setLoading) => {
     ).then((response) => {
       setLoading(false);
       setQuestions(response.data.results);
+      console.log(response.data.results);
     })
   } catch (error) {
     console.error('Error fetching questions:', error);

@@ -1,7 +1,8 @@
-import React, { Suspense, useState, createContext } from "react";
+import { Suspense, useState, createContext } from "react";
 
 export const QuizContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 export const QuizContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState([]); // Ensure questions are initialized as an array
